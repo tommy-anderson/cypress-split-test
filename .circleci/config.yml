@@ -21,7 +21,6 @@ restore-cypress:
             - v1-cypress-cache
 
 commands:
-  
   install-deps:
     description: Install dependencies
     steps:
@@ -31,17 +30,24 @@ commands:
     - run: sudo apt --fix-broken install
     - run: npm ci
 
+setup:
+  executor: node
+  steps:
+    - checkout
+    - run: node my-script.js
+test:
+  executor: node
+  steps:
+    - checkout
+    - restore-cypress
+    - run: npm run test:ci
+    - save-cypress
 
-jobs:
-  setup:
-    executor: node
-    steps:
-      - checkout
-      - run: node my-script.js
-  test:
-    executor: node
-    steps:
-      - checkout
-      - restore-cypress
-      - run: npm run test:ci
-      - save-cypress
+
+workflows:
+  common:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
