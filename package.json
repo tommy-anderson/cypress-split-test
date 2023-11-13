@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cypress": "^12.5.1",
+    "typescript": "^5.2.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "esbuild": "^0.19.4",
+    "esbuild-plugin-polyfill-node": "^0.3.0"
+  }
+}
