@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "cypress run --browser chrome --headless",
+    "test:local": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
     "test:ci": "cypress run --browser chrome --headless --env split=true"
   },
   "dependencies": {

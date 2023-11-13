@@ -37,6 +37,7 @@ jobs:
       - checkout
       - run: node my-script.js
   test:
+    parallelism: 2
     executor: node
     steps:
       - checkout
