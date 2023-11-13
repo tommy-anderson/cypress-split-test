@@ -1,10 +1,13 @@
 import { defineConfig } from "cypress";
 import { polyfillNode } from "esbuild-plugin-polyfill-node";
 import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
+import cypressSplit from "cypress-split";
 
 module.exports = defineConfig({
   e2e: {
     experimentalRunAllSpecs: true,
+    videoUploadOnPasses: false,
+
     setupNodeEvents(on, config) {
       on(
         "file:preprocessor",
@@ -27,6 +30,8 @@ module.exports = defineConfig({
           ],
         })
       );
+      cypressSplit(on, config);
+      return config;
     },
   },
 });

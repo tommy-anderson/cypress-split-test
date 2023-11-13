@@ -1,9 +1,16 @@
 {
+  "scripts": {
+    "test": "cypress run --browser chrome --headless",
+    "test:ci": "cypress run --browser chrome --headless --env split=true"
+  },
   "dependencies": {
-    "cypress": "^12.5.1",
-    "typescript": "^5.2.0",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^12.5.1",
     "esbuild": "^0.19.4",
-    "esbuild-plugin-polyfill-node": "^0.3.0"
+    "esbuild-plugin-polyfill-node": "^0.3.0",
+    "typescript": "^5.2.0"
+  },
+  "devDependencies": {
+    "cypress-split": "^1.15.6"
   }
 }
