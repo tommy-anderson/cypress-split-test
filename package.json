@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test:local": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
+    "test:local:all": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
+    "test:local:added": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
     "test:ci": "cypress run --browser chrome --headless --env split=true"
   },
   "dependencies": {
@@ -11,6 +12,7 @@
     "typescript": "^5.2.0"
   },
   "devDependencies": {
+    "@cypress/grep": "^4.0.1",
     "cypress-split": "^1.15.6"
   }
 }

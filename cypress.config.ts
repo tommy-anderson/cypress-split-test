@@ -9,6 +9,7 @@ module.exports = defineConfig({
     videoUploadOnPasses: false,
 
     setupNodeEvents(on, config) {
+      require("@cypress/grep/src/plugin")(config);
       on(
         "file:preprocessor",
         createBundler({
