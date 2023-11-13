@@ -6,21 +6,20 @@ executors:
     docker:
       - image: cimg/node:20.5.0
 
-cache-cypress:
-    description: 'Save Cypress cache'
-    steps:
-      - save_cache:
-          key: v1-cypress-cache
-          paths:
-            - /mnt/ramdisk/.cache/Cypress
-restore-cypress:
-    description: 'Restore Cypress cache'
-    steps:
-      - restore_cache:
-          keys:
-            - v1-cypress-cache
-
 commands:
+  cache-cypress:
+      description: 'Save Cypress cache'
+      steps:
+        - save_cache:
+            key: v1-cypress-cache
+            paths:
+              - /mnt/ramdisk/.cache/Cypress
+  restore-cypress:
+      description: 'Restore Cypress cache'
+      steps:
+        - restore_cache:
+            keys:
+              - v1-cypress-cache
   install-deps:
     description: Install dependencies
     steps:
