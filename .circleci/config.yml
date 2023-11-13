@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - run: node my-script.js
-  test:
+  test-all:
     parallelism: 2
     executor: node
     steps:
@@ -45,12 +45,24 @@ jobs:
       - install-deps
       - run: npm run test:ci
       - cache-cypress
+  test-added:
+    parallelism: 2
+    executor: node
+    steps:
+      - checkout
+      - restore-cypress
+      - install-deps
+      - run: npm run test:ci:added
+      - cache-cypress
 
 
 workflows:
   common:
     jobs:
       - setup
-      - test:
+      - test-all:
+          requires:
+            - setup
+      - test-added:
           requires:
             - setup

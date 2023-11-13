@@ -1,8 +1,9 @@
 {
   "scripts": {
-    "test:local:all": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
-    "test:local:added": "SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
-    "test:ci": "cypress run --browser chrome --headless --env split=true"
+    "test:local:all": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
+    "test:local:added": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
+    "test:ci": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true",
+    "test:ci:added": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\""
   },
   "dependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",

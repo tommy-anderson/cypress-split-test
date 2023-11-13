@@ -1,0 +1,104 @@
+{
+  "durations": [
+    {
+      "spec": "nonexistent",
+      "duration": 0
+    },
+    {
+      "spec": "cypress/e2e/1-getting-started/todo.cy.ts",
+      "duration": 2498
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/actions.cy.ts",
+      "duration": 13397
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/aliasing.cy.ts",
+      "duration": 1693
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/assertions.cy.ts",
+      "duration": 3301
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/connectors.cy.ts",
+      "duration": 1761
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/cookies.cy.ts",
+      "duration": 1936
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/cypress_api.cy.ts",
+      "duration": 1749
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/files.cy.ts",
+      "duration": 1668
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/location.cy.ts",
+      "duration": 1150
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/misc.cy.ts",
+      "duration": 3173
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/navigation.cy.ts",
+      "duration": 2521
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/network_requests.cy.ts",
+      "duration": 5211
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/querying.cy.ts",
+      "duration": 1945
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/spies_stubs_clocks.cy.ts",
+      "duration": 4144
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/storage.cy.ts",
+      "duration": 1910
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/traversal.cy.ts",
+      "duration": 2645
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/utilities.cy.ts",
+      "duration": 3021
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/viewport.cy.ts",
+      "duration": 3552
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/waiting.cy.ts",
+      "duration": 5815
+    },
+    {
+      "spec": "cypress/e2e/2-advanced-examples/window.cy.ts",
+      "duration": 1160
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-10seconds.cy.ts",
+      "duration": 10032
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-15seconds.cy.ts",
+      "duration": 15040
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-20seconds.cy.ts",
+      "duration": 20031
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-25seconds.cy.ts",
+      "duration": 25030
+    }
+  ]
+}
