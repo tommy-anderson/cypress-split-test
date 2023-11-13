@@ -41,7 +41,7 @@ jobs:
       - checkout
       - restore-cypress
       - run: npm run test:ci
-      - save-cypress
+      - cache-cypress
 
 
 workflows:
