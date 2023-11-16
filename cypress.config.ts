@@ -13,6 +13,7 @@ module.exports = defineConfig({
     embeddedScreenshots: true,
     reportPageTitle: "Cypress Test Report",
     inlineAssets: true,
+    code: true,
   },
   e2e: {
     experimentalRunAllSpecs: true,
