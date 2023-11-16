@@ -37,7 +37,7 @@ jobs:
       - checkout
       - run: node my-script.js
   test-all:
-    parallelism: 2
+    parallelism: 5
     executor: node
     steps:
       - checkout
@@ -45,8 +45,11 @@ jobs:
       - install-deps
       - run: npm run test:ci
       - cache-cypress
+      - store_artifacts:
+          path: cypress/results
+          destination: test-results
   test-added:
-    parallelism: 2
+    parallelism: 5
     executor: node
     steps:
       - checkout
