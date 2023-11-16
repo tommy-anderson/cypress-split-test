@@ -54,6 +54,8 @@ jobs:
       - install-deps
       - run: npm run test:ci:added
       - cache-cypress
+      - store_artifacts:
+          path: cypress/results
 
 
 workflows:
