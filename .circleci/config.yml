@@ -56,6 +56,7 @@ jobs:
       - cache-cypress
       - store_artifacts:
           path: cypress/results
+          destination: test-results
 
 
 workflows:
