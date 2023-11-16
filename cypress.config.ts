@@ -4,18 +4,29 @@ import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
 import cypressSplit from "cypress-split";
 
 module.exports = defineConfig({
+  reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    reportDir: "cypress/results",
+    reportFilename: "[name]",
+    html: true,
+    json: false,
+    embeddedScreenshots: true,
+    reportPageTitle: "Cypress Test Report",
+    inlineAssets: true,
+  },
   e2e: {
     experimentalRunAllSpecs: true,
-    videoUploadOnPasses: false,
+    video: false,
+    screenshotsFolder: "cypress/screenshots",
+    videosFolder: "cypress/videos",
 
-    setupNodeEvents(on, config) {
+    setupNodeEvents(cypressOn, config) {
+      const on = require("cypress-on-fix")(cypressOn);
       require("@cypress/grep/src/plugin")(config);
+      require("cypress-mochawesome-reporter/plugin")(on);
       on(
         "file:preprocessor",
         createBundler({
-          alias: {
-            "meteor/random": "meteor-random-node",
-          },
           plugins: [
             polyfillNode({
               polyfills: {

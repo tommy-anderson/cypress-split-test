@@ -1,19 +1,21 @@
 {
   "scripts": {
     "test:local:all": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
-    "test:local:added": "SPLIT_FILE=timings.json SPLIT=2 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
+    "test:local:added": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
     "test:ci": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true",
     "test:ci:added": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\""
   },
   "dependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
     "cypress": "^12.5.1",
+    "cypress-mochawesome-reporter": "^3.6.1",
     "esbuild": "^0.19.4",
     "esbuild-plugin-polyfill-node": "^0.3.0",
     "typescript": "^5.2.0"
   },
   "devDependencies": {
     "@cypress/grep": "^4.0.1",
+    "cypress-on-fix": "^1.0.2",
     "cypress-split": "^1.15.6"
   }
 }
