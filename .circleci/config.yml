@@ -33,8 +33,6 @@ commands:
 jobs:  
   setup:
     executor: node
-    environment:
-      CYPRESS_RESULT_PATH: cypress/results
     steps:
       - checkout
       - run: node my-script.js
@@ -49,16 +47,15 @@ jobs:
       - cache-cypress
       # we delete the results folder on success, because we only care about the failed tests artifacts
       - run:
-          command: rm -rf CYPRESS_RESULT_PATH
+          name: Delete results folder on test success
+          command: rm -rf cypress/results
           when: on_success
       - store_artifacts:
-          path: CYPRESS_RESULT_PATH
+          path: cypress/results
       
   test-added:
     parallelism: 5
     executor: node
-    environment:
-      CYPRESS_RESULT_PATH: cypress/results
     steps:
       - checkout
       - restore-cypress
@@ -67,10 +64,11 @@ jobs:
       - cache-cypress
       # we delete the results folder on success, because we only care about the failed tests artifacts
       - run:
-          command: rm -rf $CYPRESS_RESULT_PATH
+          name: Delete results folder on test success
+          command: rm -rf cypress/results
           when: on_success
       - store_artifacts:
-          path: $CYPRESS_RESULT_PATH
+          path: cypress/results
 
 
 
