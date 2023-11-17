@@ -1,9 +1,9 @@
 {
   "scripts": {
     "test:local:all": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
-    "test:local:added": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\"",
-    "test:ci": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true",
-    "test:ci:added": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\""
+    "test:local:added": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
+    "test:ci": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
+    "test:ci:added": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json"
   },
   "dependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
@@ -15,7 +15,9 @@
   },
   "devDependencies": {
     "@cypress/grep": "^4.0.1",
+    "cypress-multi-reporters": "^1.6.4",
     "cypress-on-fix": "^1.0.2",
-    "cypress-split": "^1.15.6"
+    "cypress-split": "^1.15.6",
+    "mocha-junit-reporter": "^2.2.1"
   }
 }

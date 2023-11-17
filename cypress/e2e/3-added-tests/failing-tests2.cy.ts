@@ -1,28 +1,38 @@
-describe("some fail", { tags: ["added"] }, () => {
-  it("fails after 1 second", () => {
-    cy.wait(1000);
+describe("all fail", () => {
+  it("fails after 100 ms 1", { tags: ["added"] }, () => {
+    cy.wait(100);
     expect(true).to.equal(false);
   });
-  it("fails after 2 second", () => {
-    cy.wait(1000);
+  it("fails after 100 ms 2", { tags: ["added"] }, () => {
+    cy.wait(100);
     expect(true).to.equal(false);
   });
-  it("succeeds after 1 second", () => {
-    cy.wait(1000);
-    expect(true).to.equal(true);
+  it("fails after 100 ms 3", { tags: ["added"] }, () => {
+    cy.wait(100);
+    expect(true).to.equal(false);
   });
 });
-describe("all fail", { tags: ["added"] }, () => {
-  it("fails after 1 second", () => {
-    cy.wait(1000);
+describe("some fail", () => {
+  it("does not fail after 100 ms 1", { tags: ["added"] }, () => {
+    cy.wait(100);
+    expect(true).to.equal(true);
+  });
+  it("fails after 100 ms 1", { tags: ["added"] }, () => {
+    cy.wait(100);
     expect(true).to.equal(false);
   });
-  it("fails after 1 second", () => {
-    cy.wait(1000);
-    expect(true).to.equal(false);
+});
+describe("all succeed", () => {
+  it("does not fail after 100 ms 1", { tags: ["added"] }, () => {
+    cy.wait(100);
+    expect(true).to.equal(true);
   });
-  it("fails after 1 second", () => {
-    cy.wait(1000);
-    expect(true).to.equal(false);
+  it("does not fail after 100 ms 2", { tags: ["added"] }, () => {
+    cy.wait(100);
+    expect(true).to.equal(true);
+  });
+  it("does not fail after 100 ms 3", { tags: ["added"] }, () => {
+    cy.wait(100);
+    expect(true).to.equal(true);
   });
 });

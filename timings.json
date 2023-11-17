@@ -1,10 +1,6 @@
 {
   "durations": [
     {
-      "spec": "nonexistent",
-      "duration": 0
-    },
-    {
       "spec": "cypress/e2e/1-getting-started/todo.cy.ts",
       "duration": 2498
     },
@@ -99,6 +95,26 @@
     {
       "spec": "cypress/e2e/3-added-tests/test-25seconds.cy.ts",
       "duration": 25030
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-2seconds.cy.ts",
+      "duration": 2032
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-3seconds.cy.ts",
+      "duration": 3035
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-4seconds.cy.ts",
+      "duration": 4038
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/test-5seconds.cy.ts",
+      "duration": 5036
+    },
+    {
+      "spec": "nonexistent",
+      "duration": 0
     }
   ]
 }

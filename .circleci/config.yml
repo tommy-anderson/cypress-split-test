@@ -45,13 +45,13 @@ jobs:
       - install-deps
       - run: npm run test:ci
       - cache-cypress
-      # we delete the results folder on success, because we only care about the failed tests artifacts
+      # we delete the reports folder on success, because we only care about the failed tests artifacts
       - run:
-          name: Delete results folder on test success
-          command: rm -rf cypress/results
+          name: Delete reports folder on test success
+          command: rm -rf cypress/reports
           when: on_success
       - store_artifacts:
-          path: cypress/results
+          path: cypress/reports
       
   test-added:
     parallelism: 5
@@ -62,13 +62,13 @@ jobs:
       - install-deps
       - run: npm run test:ci:added
       - cache-cypress
-      # we delete the results folder on success, because we only care about the failed tests artifacts
+      # we delete the reports folder on success, because we only care about the failed tests artifacts
       - run:
-          name: Delete results folder on test success
-          command: rm -rf cypress/results
+          name: Delete reports folder on test success
+          command: rm -rf cypress/reports
           when: on_success
       - store_artifacts:
-          path: cypress/results
+          path: cypress/reports
 
 
 
