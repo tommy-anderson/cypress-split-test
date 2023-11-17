@@ -3,11 +3,11 @@
   "mochaJunitReporterReporterOptions": {
     "mochaFile": "cypress/testInsights/junit/results-[hash].xml"
   },
-  "reporterOptions": {
+  "cypressMochawesomeReporterReporterOptions": {
     "reportDir": "cypress/reports",
     "reportFilename": "[name]",
     "html": true,
-    "json": true,
+    "json": false,
     "embeddedScreenshots": true,
     "reportPageTitle": "Cypress Test Report",
     "inlineAssets": true,

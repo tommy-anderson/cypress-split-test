@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "test:local:all": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
-    "test:local:added": "SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
-    "test:ci": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
-    "test:ci:added": "SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json"
+    "test:local:all": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless",
+    "test:local:added": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json SPLIT=1 SPLIT_INDEX=0 cypress run --browser chrome --headless --env CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
+    "test:ci": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
+    "test:ci:added": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json"
   },
   "dependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
@@ -11,6 +11,7 @@
     "cypress-mochawesome-reporter": "^3.6.1",
     "esbuild": "^0.19.4",
     "esbuild-plugin-polyfill-node": "^0.3.0",
+    "patch-package": "^8.0.0",
     "typescript": "^5.2.0"
   },
   "devDependencies": {

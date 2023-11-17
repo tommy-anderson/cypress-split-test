@@ -4,3 +4,4 @@ cypress/videos**
 cypress/.DS_STORE
 cypress/reports/**
 cypress/testInsights/**
+.DS_STORE
