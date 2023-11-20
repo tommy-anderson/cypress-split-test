@@ -2,83 +2,99 @@
   "durations": [
     {
       "spec": "cypress/e2e/1-getting-started/todo.cy.ts",
-      "duration": 2498
+      "duration": 2756
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/actions.cy.ts",
-      "duration": 13397
+      "duration": 14920
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/aliasing.cy.ts",
-      "duration": 1693
+      "duration": 1529
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/assertions.cy.ts",
-      "duration": 3301
+      "duration": 3275
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/connectors.cy.ts",
-      "duration": 1761
+      "duration": 1598
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/cookies.cy.ts",
-      "duration": 1936
+      "duration": 1853
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/cypress_api.cy.ts",
-      "duration": 1749
+      "duration": 1628
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/files.cy.ts",
-      "duration": 1668
+      "duration": 1934
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/location.cy.ts",
-      "duration": 1150
+      "duration": 1140
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/misc.cy.ts",
-      "duration": 3173
+      "duration": 3233
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/navigation.cy.ts",
-      "duration": 2521
+      "duration": 2603
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/network_requests.cy.ts",
-      "duration": 5211
+      "duration": 5287
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/querying.cy.ts",
-      "duration": 1945
+      "duration": 2286
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/spies_stubs_clocks.cy.ts",
-      "duration": 4144
+      "duration": 4203
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/storage.cy.ts",
-      "duration": 1910
+      "duration": 1905
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/traversal.cy.ts",
-      "duration": 2645
+      "duration": 2438
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/utilities.cy.ts",
-      "duration": 3021
+      "duration": 3099
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/viewport.cy.ts",
-      "duration": 3552
+      "duration": 3693
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/waiting.cy.ts",
-      "duration": 5815
+      "duration": 6175
     },
     {
       "spec": "cypress/e2e/2-advanced-examples/window.cy.ts",
-      "duration": 1160
+      "duration": 1117
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/passingTests.cy.ts",
+      "duration": 68
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/passingTests3.cy.ts",
+      "duration": 67
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/passingTests4.cy.ts",
+      "duration": 68
+    },
+    {
+      "spec": "cypress/e2e/3-added-tests/passingTests5.cy.ts",
+      "duration": 67
     },
     {
       "spec": "cypress/e2e/3-added-tests/test-10seconds.cy.ts",
