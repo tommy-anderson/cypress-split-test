@@ -1,6 +1,6 @@
 describe("all succeed 2", { tags: "added" }, () => {
   it("succeed 1", () => {
-    expect(true).to.equal(false);
+    expect(true).to.equal(true);
   });
 
   it("succeed 2", () => {
