@@ -31,11 +31,6 @@ commands:
     - run: npm ci
 
 jobs:  
-  setup:
-    executor: node
-    steps:
-      - checkout
-      - run: node my-script.js
   test-all:
     parallelism: 5
     executor: node
@@ -46,6 +41,10 @@ jobs:
       - run: npm run test:ci
       - cache-cypress
       # we delete the reports folder on success, because we only care about the failed tests artifacts
+      - run: 
+          name: Change flaky icon
+          command: node changeFlakyIcon.js
+          when: on_fail
       - run:
           name: Delete reports folder on test success
           command: rm -rf cypress/reports
@@ -66,6 +65,10 @@ jobs:
       - run: npm run test:ci:flaky
       - cache-cypress
       # we delete the reports folder on success, because we only care about the failed tests artifacts
+      - run: 
+          name: Change flaky icon
+          command: node changeFlakyIcon.js
+          when: on_fail
       - run:
           name: Delete reports folder on test success
           command: rm -rf cypress/reports
@@ -81,11 +84,6 @@ jobs:
 workflows:
   common:
     jobs:
-      - setup
-      - test-all:
-          requires:
-            - setup
-      - test-added:
-          requires:
-            - setup
+      - test-all
+      - test-added
 
