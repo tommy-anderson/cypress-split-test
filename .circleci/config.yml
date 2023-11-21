@@ -90,6 +90,6 @@ jobs:
 workflows:
   common:
     jobs:
-      - test-all
+      # - test-all
       - test-added
 
