@@ -1,8 +1,13 @@
 diff --git a/node_modules/mocha-junit-reporter/index.js b/node_modules/mocha-junit-reporter/index.js
-index 060ff9d..93584cb 100644
+index 060ff9d..49fe76e 100644
 --- a/node_modules/mocha-junit-reporter/index.js
 +++ b/node_modules/mocha-junit-reporter/index.js
-@@ -66,12 +66,12 @@ function configureDefaults(options) {
+@@ -62,16 +62,17 @@ function findReporterOptions(options) {
+ 
+ function configureDefaults(options) {
+   var config = findReporterOptions(options);
++  
+   debug('options', config);
    config.mochaFile = getSetting(config.mochaFile, 'MOCHA_FILE', 'test-results.xml');
    config.attachments = getSetting(config.attachments, 'ATTACHMENTS', false);
    config.antMode = getSetting(config.antMode, 'ANT_MODE', false);
@@ -16,7 +21,16 @@ index 060ff9d..93584cb 100644
    if (config.antMode) {
      updateOptionsForAntMode(config);
    }
-@@ -250,12 +250,13 @@ function MochaJUnitReporter(runner, options) {
+@@ -81,7 +82,7 @@ function configureDefaults(options) {
+   }
+ 
+   config.suiteTitleSeparatedBy = config.suiteTitleSeparatedBy || ' ';
+-
++  console.log('config', config)
+   return config;
+ }
+ 
+@@ -250,12 +251,13 @@ function MochaJUnitReporter(runner, options) {
    };
  
    this._runner.on('suite end', function(suite) {
@@ -31,7 +45,7 @@ index 060ff9d..93584cb 100644
    }.bind(this));
  
    this._runner.on('fail', function(test, err) {
-@@ -320,7 +321,7 @@ MochaJUnitReporter.prototype.getTestsuiteData = function(suite) {
+@@ -320,7 +322,7 @@ MochaJUnitReporter.prototype.getTestsuiteData = function(suite) {
   * @param {object} err - if test failed, the failure object
   * @returns {object}
   */
@@ -40,7 +54,7 @@ index 060ff9d..93584cb 100644
    var jenkinsMode = this._options.jenkinsMode;
    var flipClassAndName = this._options.testCaseSwitchClassnameAndName;
    var name = stripAnsi(jenkinsMode ? getJenkinsClassname(test, this._options) : test.fullTitle());
-@@ -334,6 +335,10 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+@@ -334,6 +336,10 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
        }
      }]
    };
@@ -51,7 +65,7 @@ index 060ff9d..93584cb 100644
  
    // We need to merge console.logs and attachments into one <system-out> -
    //  see JUnit schema (only accepts 1 <system-out> per test).
-@@ -369,9 +374,21 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+@@ -369,9 +375,21 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
      if (!Base.hideDiff && err.expected !== undefined) {
          var oldUseColors = Base.useColors;
          Base.useColors = false;
@@ -73,7 +87,7 @@ index 060ff9d..93584cb 100644
      var failureElement = {
        _attr: {
          message: this.removeInvalidCharacters(message) || '',
-@@ -379,7 +396,6 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+@@ -379,7 +397,6 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
        },
        _cdata: this.removeInvalidCharacters(failureMessage)
      };
@@ -81,12 +95,11 @@ index 060ff9d..93584cb 100644
      testcase.testcase.push({failure: failureElement});
    }
    return testcase;
-@@ -450,8 +466,11 @@ MochaJUnitReporter.prototype.getXml = function(testsuites) {
+@@ -450,8 +467,10 @@ MochaJUnitReporter.prototype.getXml = function(testsuites) {
    var totalTests = 0;
    var stats = this._runner.stats;
    var antMode = this._options.antMode;
 +  var circleCIMode = this._options.circleCIMode;
-+  console.log('circleCIMode', circleCIMode)
    var hasProperties = (!!this._options.properties) || antMode;
    var Date = this._Date;
 +  var suiteFileName = testsuites[0] && testsuites[0].testsuite[0] && testsuites[0].testsuite[0]._attr && testsuites[0].testsuite[0]._attr.file;
