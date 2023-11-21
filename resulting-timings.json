@@ -1,20 +1,3 @@
 {
-  "durations": [
-    {
-      "spec": "cypress/e2e/3-added-tests/passingTests4.cy.ts",
-      "duration": 65
-    },
-    {
-      "spec": "cypress/e2e/3-added-tests/passingTests3.cy.ts",
-      "duration": 74
-    },
-    {
-      "spec": "cypress/e2e/3-added-tests/passingTests5.cy.ts",
-      "duration": 76
-    },
-    {
-      "spec": "cypress/e2e/3-added-tests/passingTests.cy.ts",
-      "duration": 69
-    }
-  ]
+  "durations": []
 }

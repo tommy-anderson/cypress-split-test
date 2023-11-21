@@ -1,0 +1,39 @@
+diff --git a/node_modules/mocha-junit-reporter/index.js b/node_modules/mocha-junit-reporter/index.js
+index 060ff9d..84821c5 100644
+--- a/node_modules/mocha-junit-reporter/index.js
++++ b/node_modules/mocha-junit-reporter/index.js
+@@ -250,12 +250,13 @@ function MochaJUnitReporter(runner, options) {
+   };
+ 
+   this._runner.on('suite end', function(suite) {
++
+     // allow tests to mock _onSuiteEnd
+     return this._onSuiteEnd(suite);
+   }.bind(this));
+ 
+   this._runner.on('pass', function(test) {
+-    lastSuite().push(this.getTestcaseData(test));
++    lastSuite().push(this.getTestcaseData(test,undefined,true));
+   }.bind(this));
+ 
+   this._runner.on('fail', function(test, err) {
+@@ -320,7 +321,7 @@ MochaJUnitReporter.prototype.getTestsuiteData = function(suite) {
+  * @param {object} err - if test failed, the failure object
+  * @returns {object}
+  */
+-MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
++MochaJUnitReporter.prototype.getTestcaseData = function(test, err, showFlakes=false) {
+   var jenkinsMode = this._options.jenkinsMode;
+   var flipClassAndName = this._options.testCaseSwitchClassnameAndName;
+   var name = stripAnsi(jenkinsMode ? getJenkinsClassname(test, this._options) : test.fullTitle());
+@@ -334,6 +335,10 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+       }
+     }]
+   };
++  // add flaky attr to the testcase _attr
++  if(showFlakes && test._currentRetry > 0){
++    testcase.testcase[0]._attr.flaky = true
++  }
+ 
+   // We need to merge console.logs and attachments into one <system-out> -
+   //  see JUnit schema (only accepts 1 <system-out> per test).

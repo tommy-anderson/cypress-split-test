@@ -63,7 +63,7 @@ jobs:
       - checkout
       - restore-cypress
       - install-deps
-      - run: npm run test:ci:added
+      - run: npm run test:ci:flaky
       - cache-cypress
       # we delete the reports folder on success, because we only care about the failed tests artifacts
       - run:
