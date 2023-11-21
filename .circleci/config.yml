@@ -59,7 +59,7 @@ jobs:
 
       
   test-added:
-    parallelism: 5
+    parallelism: 2
     executor: node
     steps:
       - checkout
