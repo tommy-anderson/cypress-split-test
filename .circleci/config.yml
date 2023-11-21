@@ -45,7 +45,7 @@ jobs:
           command: rm -rf cypress/reports
       - run:
           name: Get flaky cypress tests
-          command: node getFlakyTests.js "cypress/testInsights"
+          command: node reportFlakyTests.js "cypress/testInsights"
       - run: 
           name: Change flaky icon for HTML report
           command: node changeFlakyIcon.js
@@ -72,7 +72,7 @@ jobs:
           command: rm -rf cypress/reports
       - run:
           name: Get flaky cypress tests
-          command: node getFlakyTests.js "cypress/testInsights"
+          command: node reportFlakyTests.js "cypress/testInsights"
       - run: 
           name: Change flaky icon for HTML report
           command: node changeFlakyIcon.js
