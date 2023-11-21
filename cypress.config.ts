@@ -10,7 +10,10 @@ module.exports = defineConfig({
     configFile: "cypress-reporter-config.json",
   },
   e2e: {
-    retries: 3,
+    retries: {
+      runMode: 200,
+      openMode: 0,
+    },
     experimentalRunAllSpecs: true,
     video: false,
     screenshotsFolder: "cypress/screenshots",

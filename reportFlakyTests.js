@@ -28,7 +28,7 @@ const xmlFiles = (function findXmlFiles(folderPath) {
 console.log('Found XML files:', xmlFiles);
 // we need to parse all the xml files and find the flaky tests
 // to find flaky tests we need to read each xml file and look at the 
-// testsuites.testsuite.testcase elements and find the ones that have a flaky="true" attribute
+// testsuites.testsuite.testcase elements and find the ones that have a flakyRetries attribute
 
 const flakyTests = []
 
@@ -47,8 +47,8 @@ xmlFiles.forEach(xmlFile => {
             const fileName = testSuite.$.file
             const testCases = testSuite.testcase.map(testCase => testCase.$)
             const flakyTestCases = testCases
-                .filter(testCase => testCase.flaky === 'true')
-                .map(testCase => (`${fileName} > ${suiteName} -> ${testCase.name}`));
+                .filter(testCase => testCase.flakyRetries)
+                .map(testCase => (`${fileName} > ${suiteName} -> ${testCase.name} (flakyRetries: ${testCase.flakyRetries})`));
 
             flakyTests.push(...flakyTestCases)
         })

@@ -7,5 +7,7 @@ describe("First describe", { tags: ["flaky"] }, () => {
   it("can be flaky", () => {
     expect(randomBool()).to.equal(true);
     expect(randomBool()).to.equal(true);
+    expect(randomBool()).to.equal(true);
+    expect(randomBool()).to.equal(true);
   });
 });
