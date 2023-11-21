@@ -15,6 +15,7 @@ module.exports = defineConfig({
     video: false,
     screenshotsFolder: "cypress/screenshots",
     videosFolder: "cypress/videos",
+    defaultCommandTimeout: 1000,
 
     setupNodeEvents(cypressOn, config) {
       const on = require("cypress-on-fix")(cypressOn);

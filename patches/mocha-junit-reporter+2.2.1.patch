@@ -1,7 +1,21 @@
 diff --git a/node_modules/mocha-junit-reporter/index.js b/node_modules/mocha-junit-reporter/index.js
-index 060ff9d..84821c5 100644
+index 060ff9d..93584cb 100644
 --- a/node_modules/mocha-junit-reporter/index.js
 +++ b/node_modules/mocha-junit-reporter/index.js
+@@ -66,12 +66,12 @@ function configureDefaults(options) {
+   config.mochaFile = getSetting(config.mochaFile, 'MOCHA_FILE', 'test-results.xml');
+   config.attachments = getSetting(config.attachments, 'ATTACHMENTS', false);
+   config.antMode = getSetting(config.antMode, 'ANT_MODE', false);
++  config.circleCIMode = getSetting(config.circleCIMode, 'CIRCLE_CI_MODE', false);
+   config.jenkinsMode = getSetting(config.jenkinsMode, 'JENKINS_MODE', false);
+   config.properties = getSetting(config.properties, 'PROPERTIES', null, parsePropertiesFromEnv);
+   config.toConsole = !!config.toConsole;
+   config.rootSuiteTitle = config.rootSuiteTitle || 'Root Suite';
+   config.testsuitesTitle = config.testsuitesTitle || 'Mocha Tests';
+-
+   if (config.antMode) {
+     updateOptionsForAntMode(config);
+   }
 @@ -250,12 +250,13 @@ function MochaJUnitReporter(runner, options) {
    };
  
@@ -37,3 +51,56 @@ index 060ff9d..84821c5 100644
  
    // We need to merge console.logs and attachments into one <system-out> -
    //  see JUnit schema (only accepts 1 <system-out> per test).
+@@ -369,9 +374,21 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+     if (!Base.hideDiff && err.expected !== undefined) {
+         var oldUseColors = Base.useColors;
+         Base.useColors = false;
++        // there's this weird bug where the boolean value true is sometimes converted to the string "true"
++        // and it generates a diff that looks weird because mocha is comparing a string to a boolean
++        
++        // assumming that we usually don't expect any string "true" to be compared to a boolean value, we can do the following
++        // check if one of the values is the string true and if the other is a boolean value, and if so convert the string to a boolean
++        if (err.actual === "true" && typeof err.expected === "boolean") {
++            err.actual = true;
++        }
++        if (err.expected === "true" && typeof err.actual === "boolean") {
++            err.expected = true;
++        }
+         failureMessage += "\n" + Base.generateDiff(err.actual, err.expected);
+         Base.useColors = oldUseColors;
+     }
++    
+     var failureElement = {
+       _attr: {
+         message: this.removeInvalidCharacters(message) || '',
+@@ -379,7 +396,6 @@ MochaJUnitReporter.prototype.getTestcaseData = function(test, err) {
+       },
+       _cdata: this.removeInvalidCharacters(failureMessage)
+     };
+-
+     testcase.testcase.push({failure: failureElement});
+   }
+   return testcase;
+@@ -450,8 +466,11 @@ MochaJUnitReporter.prototype.getXml = function(testsuites) {
+   var totalTests = 0;
+   var stats = this._runner.stats;
+   var antMode = this._options.antMode;
++  var circleCIMode = this._options.circleCIMode;
++  console.log('circleCIMode', circleCIMode)
+   var hasProperties = (!!this._options.properties) || antMode;
+   var Date = this._Date;
++  var suiteFileName = testsuites[0] && testsuites[0].testsuite[0] && testsuites[0].testsuite[0]._attr && testsuites[0].testsuite[0]._attr.file;
+ 
+   testsuites.forEach(function(suite) {
+     var _suiteAttr = suite.testsuite[0]._attr;
+@@ -469,6 +488,10 @@ MochaJUnitReporter.prototype.getXml = function(testsuites) {
+     _suiteAttr.failures = 0;
+     _suiteAttr.skipped = 0;
+ 
++    if (circleCIMode) {
++      _suiteAttr.file = suiteFileName;
++    }
++
+     _cases.forEach(function(testcase) {
+       var lastNode = testcase.testcase[testcase.testcase.length - 1];
+ 
