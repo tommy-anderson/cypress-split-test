@@ -6,7 +6,8 @@
     "test:ci": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
     "test:ci:added": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"added\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
     "test:ci:flaky": "OUTPUT_FILE=resulting-timings.json SPLIT_FILE=timings.json cypress run --browser chrome --headless --env split=true,CI=true,grepFilterSpecs=true,grepOmitFiltered=true,grepTags=\"flaky\" --reporter cypress-multi-reporters --reporter-options configFile=cypress-reporter-config.json",
-    "trash:assets": "rm -rf cypress/reports && rm -rf cypress/testInsights"
+    "trash:assets": "rm -rf cypress/reports && rm -rf cypress/testInsights",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
