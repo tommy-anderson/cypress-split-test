@@ -1,6 +1,6 @@
 import { randomBool } from "./utils";
 
-describe("First describe", { tags: ["flaky"] }, () => {
+describe("First describe", { tags: ["flaky2"] }, () => {
   it("succeeds", () => {
     expect(true).to.equal(true);
   });
@@ -9,9 +9,10 @@ describe("First describe", { tags: ["flaky"] }, () => {
     expect(randomBool()).to.equal(true);
   });
   it("fails", () => {
-    expect(false).to.equal(true);
+    expect(true).to.equal(false);
   });
 });
+
 describe("Second describe", { tags: ["flaky"] }, () => {
   it("succeeds", () => {
     expect(true).to.equal(true);
