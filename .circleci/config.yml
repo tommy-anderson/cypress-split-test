@@ -40,18 +40,21 @@ jobs:
       - install-deps
       - run: npm run test:ci
       - cache-cypress
-      # we delete the reports folder on success, because we only care about the failed tests artifacts
-      - run: 
-          name: Change flaky icon
-          command: node changeFlakyIcon.js
-          when: on_fail
       - run:
           name: Delete reports folder on test success
           command: rm -rf cypress/reports
-          when: on_success
+      - run:
+          name: Get flaky cypress tests
+          command: node getFlakyTests.js "cypress/testInsights"
+      - run: 
+          name: Change flaky icon for HTML report
+          command: node changeFlakyIcon.js
+          when: on_fail
       - store_artifacts:
           path: cypress/reports
+          name: Store html test reports
       - store_test_results:
+          name: Store XML test reports
           path: cypress/testInsights
 
       
@@ -64,18 +67,21 @@ jobs:
       - install-deps
       - run: npm run test:ci:flaky
       - cache-cypress
-      # we delete the reports folder on success, because we only care about the failed tests artifacts
-      - run: 
-          name: Change flaky icon
-          command: node changeFlakyIcon.js
-          when: on_fail
       - run:
           name: Delete reports folder on test success
           command: rm -rf cypress/reports
-          when: on_success
+      - run:
+          name: Get flaky cypress tests
+          command: node getFlakyTests.js "cypress/testInsights"
+      - run: 
+          name: Change flaky icon for HTML report
+          command: node changeFlakyIcon.js
+          when: on_fail
       - store_artifacts:
           path: cypress/reports
+          name: Store html test reports
       - store_test_results:
+          name: Store XML test reports
           path: cypress/testInsights
 
 
