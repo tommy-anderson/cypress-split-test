@@ -19,14 +19,167 @@ jobs:
       - slack/notify:
           custom: |
             {
-              "blocks": [
+              "attachments": [
                 {
-                  "type": "section",
-                  "fields": [
+                  "blocks": [
                     {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "🏁 Run finished"
+                      },
+                      "accessory": {
+                        "type": "button",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "View Job in CircleCI"
+                        },
+                        "url": "https://google.com",
+                        "action_id": "button-action"
+                      }
+                    },
+                    {
+                      "type": "context",
+                      "elements": [
+                        {
+                          "type": "plain_text",
+                          "text": "Run Duration: 9m 40s"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rich_text",
+                      "elements": [
+                        {
+                          "type": "rich_text_section",
+                          "elements": [
+                            {
+                              "type": "text",
+                              "text": "Project:",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": " Planable-app-visual\n"
+                            },
+                            {
+                              "type": "text",
+                              "text": "Branch:",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": " fix/P-7125-tooltip\n"
+                            },
+                            {
+                              "type": "text",
+                              "text": "Commit: ",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "emoji",
+                              "name": "ladybug",
+                              "unicode": "1f41e"
+                            },
+                            {
+                              "type": "text",
+                              "text": " Isolate the css fix\n\n"
+                            },
+                            {
+                              "type": "text",
+                              "text": "Overall Tests: 120",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "\n"
+                            },
+                            {
+                              "type": "emoji",
+                              "name": "large_green_circle",
+                              "unicode": "1f7e2",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": " Passed: 95",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "\n"
+                            },
+                            {
+                              "type": "emoji",
+                              "name": "white_circle",
+                              "unicode": "26aa",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "️ Ignored: 5",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "\n"
+                            },
+                            {
+                              "type": "emoji",
+                              "name": "red_circle",
+                              "unicode": "1f534",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": " Failed: 15",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": "\n"
+                            },
+                            {
+                              "type": "emoji",
+                              "name": "large_purple_circle",
+                              "unicode": "1f7e3",
+                              "style": {
+                                "bold": true
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "text": " Flaky: 5",
+                              "style": {
+                                "bold": true
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "divider"
                     }
                   ]
                 }
