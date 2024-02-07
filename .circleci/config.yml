@@ -6,90 +6,17 @@ executors:
     docker:
       - image: cimg/node:20.5.0
 
-commands:
-  cache-cypress:
-      description: 'Save Cypress cache'
-      steps:
-        - save_cache:
-            key: v1-cypress-cache
-            paths:
-              - /mnt/ramdisk/.cache/Cypress
-  restore-cypress:
-      description: 'Restore Cypress cache'
-      steps:
-        - restore_cache:
-            keys:
-              - v1-cypress-cache
-  install-deps:
-    description: Install dependencies
-    steps:
-    - run: sudo apt-get update
-    - run: sudo apt-get install -y libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb xdg-utils
-    - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - run: sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
-    - run: sudo apt --fix-broken install
-    - run: npm ci
-
 jobs:  
-  test-all:
-    parallelism: 5
+  notify-slack:
     executor: node
     steps:
       - checkout
-      - restore-cypress
-      - install-deps
-      - run: npm run test:ci
-      - cache-cypress
-      - run:
-          name: Delete reports folder on test success
-          command: rm -rf cypress/reports
-      - run:
-          name: Get flaky cypress tests
-          command: node reportFlakyTests.js "cypress/testInsights"
-      - run: 
-          name: Change flaky icon for HTML report
-          command: node changeFlakyIcon.js
-          when: on_fail
-      - store_artifacts:
-          path: cypress/reports
-          name: Store html test reports
-      - store_test_results:
-          name: Store XML test reports
-          path: cypress/testInsights
-
-      
-  test-added:
-    parallelism: 2
-    executor: node
-    steps:
-      - checkout
-      - restore-cypress
-      - install-deps
-      - run: npm run test:ci:flaky
-      - cache-cypress
-      - run:
-          name: Delete reports folder on test success
-          command: rm -rf cypress/reports
-      - run:
-          name: Get flaky cypress tests
-          command: node reportFlakyTests.js "cypress/testInsights"
-      - run: 
-          name: Change flaky icon for HTML report
-          command: node changeFlakyIcon.js
-          when: on_fail
-      - store_artifacts:
-          path: cypress/reports
-          name: Store html test reports
-      - store_test_results:
-          name: Store XML test reports
-          path: cypress/testInsights
-
-
+      - run: npm ci
+      - run: echo "Notifying Slack"
 
 
 workflows:
-  common:
+  run-stuff:
     jobs:
-      # - test-all
-      - test-added
+      - notify-slack
 

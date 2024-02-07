@@ -57,9 +57,10 @@ index 060ff9d..b855480 100644
        }
      }]
    };
-+  // add flakyRetries attr to the testcase _attr
++  // add flakyRetries attr to the testcase classname
 +  if(showFlakes && test._currentRetry > 0){
-+    testcase.testcase[0]._attr.flakyRetries = test._currentRetry;
+      let classname = testcase.testcase[0]._attr.classname
++    testcase.testcase[0]._attr.classname = `testcase.testcase[0]._attr.classname (flakyRetries: ${test._currentRetry})`;
 +  }
  
    // We need to merge console.logs and attachments into one <system-out> -
