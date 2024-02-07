@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  slack: circleci/slack@4.12.6
+
 executors:
   node:
     resource_class: small
@@ -13,10 +16,29 @@ jobs:
       - checkout
       - run: npm ci
       - run: echo "Notifying Slack"
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 
 
 workflows:
   run-stuff:
     jobs:
-      - notify-slack
+      - notify-slack:
+          context: SLACK
+    
 
