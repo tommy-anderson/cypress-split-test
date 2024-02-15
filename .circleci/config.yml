@@ -26,7 +26,7 @@ jobs:
       - run: echo $BASH_ENV
       - slack/notify:
           template: CYPRESS
-          event: always
+          # event: always
 
 
 
