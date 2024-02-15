@@ -12,9 +12,9 @@
             "type": "button",
             "text": {
               "type": "plain_text",
-              "text": "View Job in CircleCI $JOB_ID"
+              "text": "View Job in CircleCI"
             },
-            "url": "https://google.com/$JOB_ID",
+            "url": "$CIRCLE_BUILD_URL",
             "action_id": "button-action"
           }
         },
