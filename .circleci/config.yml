@@ -23,7 +23,7 @@ jobs:
       - checkout
       - run: npm ci
       - run: echo "Notifying Slack"
-      - run: echo "export CYPRESS=$(cat .circleci/slack-notifications-templates/CYPRESS.json)" >> $BASH_ENV
+      - prepare-slack
       - slack/notify:
           template: CYPRESS
           event: always
