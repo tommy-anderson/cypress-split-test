@@ -14,7 +14,7 @@
               "type": "plain_text",
               "text": "View Job in CircleCI"
             },
-            "url": "https://google.com",
+            "url": "https://google.com/$JOB_ID",
             "action_id": "button-action"
           }
         },
