@@ -14,8 +14,6 @@ commands:
     steps:
       - run: echo "Preparing Slack"
       - run: echo "export CYPRESS=$(cat .circleci/slack-notifications/templates/CYPRESS.json)" >> $BASH_ENV
-                                        
-
 
 jobs:  
   notify-slack:
@@ -25,9 +23,11 @@ jobs:
       - run: npm ci
       - run: echo "Notifying Slack"
       - prepare-slack
+      - run: echo $BASH_ENV
       - slack/notify:
           template: CYPRESS
           event: always
+
 
 
 workflows:
