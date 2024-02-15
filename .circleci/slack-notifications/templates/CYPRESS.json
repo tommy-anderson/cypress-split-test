@@ -53,7 +53,7 @@
                 },
                 {
                   "type": "text",
-                  "text": " fix/P-7125-tooltip\n"
+                  "text": " $CIRCLE_BRANCH\n"
                 },
                 {
                   "type": "text",
