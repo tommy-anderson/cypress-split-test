@@ -13,7 +13,8 @@ commands:
   prepare-slack:
     steps:
       - run: echo "Preparing Slack"
-      - run: echo "export CYPRESS=$(cat .circleci/slack-notifications-templates/CYPRESS.json)" >> $BASH_ENV
+      - run: echo "export CYPRESS=$(cat .circleci/slack-notifications/templates/CYPRESS.json)" >> $BASH_ENV
+                                        
 
 
 jobs:  
