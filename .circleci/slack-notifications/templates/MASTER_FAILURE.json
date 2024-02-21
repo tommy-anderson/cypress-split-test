@@ -1,0 +1,25 @@
+{
+  "attachments": [
+    {
+      "blocks": [
+        {
+          "type": "section",
+          "text": {
+            "type": "plain_text",
+            "text": "❌ Master build failed. Please investigate.",
+            "emoji": true
+          },
+          "accessory": {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "View Job in CircleCI"
+            },
+            "url": "$CIRCLE_BUILD_URL",
+            "action_id": "button-action"
+          }
+        }
+      ]
+    }
+  ]
+}

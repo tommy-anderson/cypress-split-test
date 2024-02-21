@@ -14,6 +14,7 @@ commands:
     steps:
       - run: echo "Preparing Slack"
       - run: echo 'export CYPRESS=$(jq -c . .circleci/slack-notifications/templates/CYPRESS.json)' >> $BASH_ENV
+      - run: echo 'export MASTER_FAILURE=$(jq -c . .circleci/slack-notifications/templates/MASTER_FAILURE.json)' >> $BASH_ENV
 
 jobs:  
   notify-slack:
@@ -35,5 +36,9 @@ workflows:
     jobs:
       - notify-slack:
           context: SLACK
+          post-steps:
+            - slack/notify:
+                template: MASTER_FAILURE
+                event: always
     
 
