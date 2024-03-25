@@ -1,0 +1,36 @@
+version: 2.1
+
+parameters:
+  run-build-service-1-job:
+    type: boolean
+    default: false
+
+executors:
+  node:
+    resource_class: small
+    docker:
+      - image: cimg/node:20.5.0
+
+jobs:  
+  test-job-1:
+    executor: node
+    steps:
+      - checkout
+      - run: echo "Running test-job-1"
+  test-job-2:
+    executor: node
+    steps:
+      - checkout
+      - run: echo "Running test-job-2"
+      
+
+workflows:
+  workflow1:
+    when: << pipeline.parameters.run-build-service-1-job >>
+    jobs:
+      - test-job-1
+  workflow2:
+    when: 
+      equal:  [false, << pipeline.parameters.run-build-service-1-job >>]
+    jobs:
+      - test-job-2
