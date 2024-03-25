@@ -18,10 +18,7 @@ jobs:
       - run: # run a command
           name: Run .circleci/main.yml with specific parameters
           command: |
-            circleci config process .circleci/main.yml \
-              --output .circleci/main_processed.yml \
-              --skip-update-check \
-              -e run-build-service-1-job=true
+            echo '{ "further": true, "other_param": "a_string" }' > /home/circleci/parameters.json
       - continuation/continue:
           configuration_path: .circleci/main_processed.yml
 

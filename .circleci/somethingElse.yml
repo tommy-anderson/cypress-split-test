@@ -25,11 +25,11 @@ jobs:
       
 
 workflows:
-  workflow1:
+  somethingElse1:
     when: << pipeline.parameters.further >>
     jobs:
       - test-job-1
-  workflow2:
+  somethingElse2:
     when: 
       equal:  [false, << pipeline.parameters.further >>]
     jobs:
