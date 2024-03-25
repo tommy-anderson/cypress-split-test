@@ -18,7 +18,7 @@ jobs:
       - run: # run a command
           name: Run .circleci/main.yml with specific parameters
           command: |
-            echo '{ "further": true, "other_param": "a_string" }' > /home/circleci/parameters.json
+            echo '{ "further": true }' > /home/circleci/parameters.json
       - continuation/continue:
           configuration_path: .circleci/main.yml
           parameters: /home/circleci/parameters.json
