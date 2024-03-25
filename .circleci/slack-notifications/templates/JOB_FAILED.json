@@ -6,9 +6,8 @@
         {
           "type": "section",
           "text": {
-            "type": "plain_text",
-            "text": "❌ $CIRCLE_JOB FAILED on $CIRCLE_BRANCH",
-            "emoji": true
+            "type": "mrkdwn",
+            "text": "❌ $CIRCLE_JOB FAILED on <$CI_PULL_REQUEST|$CIRCLE_BRANCH>"
           },
           "accessory": {
             "type": "button",

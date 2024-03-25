@@ -1,92 +1,20 @@
 version: 2.1
 
-orbs:
-  slack: circleci/slack@4.12.6
-
 executors:
   node:
     resource_class: small
     docker:
       - image: cimg/node:20.5.0
 
-commands:
-  prepare-slack:
-    steps:
-      - run: echo "Preparing Slack"
-      - run: echo 'export CYPRESS=$(jq -c . .circleci/slack-notifications/templates/CYPRESS.json)' >> $BASH_ENV
-      - run: echo 'export MASTER_FAILURE=$(jq -c . .circleci/slack-notifications/templates/MASTER_FAILURE.json)' >> $BASH_ENV
-      - run: echo 'export JOB_FAILED=$(jq -c . .circleci/slack-notifications/templates/JOB_FAILED.json)' >> $BASH_ENV
-
 jobs:  
   test-job-1:
     executor: node
     steps:
       - checkout
-      - run: echo "Notifying Slack"
-  
-  test-job-2:
-    executor: node
-    steps:
-      - checkout
-      - run: echo "Notifying Slack"
-
-  test-job-3:
-    executor: node
-    steps:
-      - checkout
-      - run: echo "Running job-level2"
-  
-  test-job-1-level-2:
-    executor: node
-    steps:
-      - checkout
-      - run: echo "Running job-level2"
-  
-  test-job-2-level-2:
-    executor: node
-    steps:
-      - checkout
-      - run: echo "Running job-level2"
+      - run: echo "Running test-job-1"
+      
 
 workflows:
-  run-stuff:
+  workflow1:
     jobs:
-      - test-job-1:
-          context: SLACK
-          post-steps:
-            - prepare-slack
-            - slack/notify:
-                template: JOB_FAILED
-                event: always
-      - test-job-2:
-          context: SLACK
-          post-steps:
-            - prepare-slack
-            - slack/notify:
-                template: JOB_FAILED
-                event: always
-      - test-job-3:
-          context: SLACK
-          post-steps:
-            - prepare-slack
-            - slack/notify:
-                template: JOB_FAILED
-                event: always
-      - test-job-1-level-2:
-          context: SLACK
-          requires:
-            - test-job-1
-          post-steps:
-            - prepare-slack
-            - slack/notify:
-                template: JOB_FAILED
-                event: always
-      - test-job-2-level-2:
-          context: SLACK
-          requires:
-            - test-job-2
-          post-steps:
-            - prepare-slack
-            - slack/notify:
-                template: JOB_FAILED
-                event: always
+      - test-job-1
