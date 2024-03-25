@@ -19,10 +19,12 @@ jobs:
           name: Run .circleci/main.yml with specific parameters
           command: |
             circleci config process .circleci/main.yml \
-              -o .circleci/main_processed.yml \
+              --output .circleci/main_processed.yml \
+              --skip-update-check \
               -e run-build-service-1-job=true
       - continuation/continue:
           configuration_path: .circleci/main_processed.yml
+
 
 workflows:
   setup:
